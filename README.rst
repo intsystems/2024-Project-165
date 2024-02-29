@@ -15,16 +15,16 @@
 
 .. class:: center
 
-    :Название исследуемой задачи: Мое название работы
+    :Название исследуемой задачи: Automatic Music Transcription
     :Тип научной работы: M1P/НИР/CoIS
-    :Автор: Имя Отчество Фамилия
-    :Научный руководитель: степень, Фамилия Имя Отчество
-    :Научный консультант(при наличии): степень, Фамилия Имя Отчество
+    :Автор: Дмитрий Сергеевич Протасов
+    :Научный руководитель: д.ф.-м.н., Иван Матвеев
+    :Научный консультант(при наличии): Дмитрий Ковалёв
 
 Abstract
 ========
 
-Purus sit amet luctus venenatis lectus magna fringilla. Condimentum id venenatis a condimentum vitae sapien. Auctor neque vitae tempus quam pellentesque nec nam aliquam. Eget egestas purus viverra accumsan in. Nam aliquam sem et tortor. Donec et odio pellentesque diam volutpat commodo. Odio pellentesque diam volutpat commodo sed egestas. Sit amet dictum sit amet justo. Pellentesque sit amet porttitor eget. Imperdiet sed euismod nisi porta lorem mollis aliquam ut. Quis varius quam quisque id diam vel quam elementum. Ornare lectus sit amet est placerat in. Vulputate dignissim suspendisse in est ante. Elit sed vulputate mi sit amet mauris. Egestas sed tempus urna et pharetra pharetra. Viverra tellus in hac habitasse platea dictumst vestibulum rhoncus.
+Automatic music transcription (AMT) remains an important but challenging task in music information retrieval, hampered by limited MIDI datasets and the poor quality of existing models. This research aims to improve transcription accuracy by using specialized models to extract distinct musical features such as chord progressions, tonality, rhythm, and instrument types. To address the scarcity of MIDI datasets, we propose the use of synthetic data to augment training resources. This approach offers a new way to potentially enrich AMT models and advance the field.
 
 Research publications
 ===============================
