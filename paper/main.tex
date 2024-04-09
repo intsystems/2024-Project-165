@@ -1,9 +1,10 @@
-\documentclass{article}
+\documentclass[a4paper, 12pt]{article} %{article}
 \usepackage{arxiv}
+%\usepackage{bold-extra}
 
 \usepackage[utf8]{inputenc}
 \usepackage[english, russian]{babel}
-\usepackage[T1]{fontenc}
+\usepackage[T2A]{fontenc}
 \usepackage{url}
 \usepackage{booktabs}
 \usepackage{amsfonts}
@@ -13,146 +14,210 @@
 \usepackage{graphicx}
 \usepackage{natbib}
 \usepackage{doi}
+\newcommand{\vecE}{\mathbf{e}}
+\newcommand{\vecX}{\mathbf{x}}
+\newcommand{\vecY}{\mathbf{y}}
+\renewcommand{\abstractname}{Аннотация}
 
+\documentclass{article}
 
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{hyperref}
+% \usepackage[russian]{babel}
+% \usepackage[english]{babel}
 
-\title{A template for the \emph{arxiv} style}
+\usepackage{indentfirst}
 
-\author{ David S.~Hippocampus\thanks{Use footnote for providing further
-		information about author (webpage, alternative
-		address)---\emph{not} for acknowledging funding agencies.} \\
-	Department of Computer Science\\
-	Cranberry-Lemon University\\
-	Pittsburgh, PA 15213 \\
-	\texttt{hippo@cs.cranberry-lemon.edu} \\
-	%% examples of more authors
-	\And
-	Elias D.~Striatum \\
-	Department of Electrical Engineering\\
-	Mount-Sheikh University\\
-	Santa Narimana, Levand \\
-	\texttt{stariate@ee.mount-sheikh.edu} \\
-	%% \AND
-	%% Coauthor \\
-	%% Affiliation \\
-	%% Address \\
-	%% \texttt{email} \\
-	%% \And
-	%% Coauthor \\
-	%% Affiliation \\
-	%% Address \\
-	%% \texttt{email} \\
-	%% \And
-	%% Coauthor \\
-	%% Affiliation \\
-	%% Address \\
-	%% \texttt{email} \\
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+% \title{Automatic Music Transcription}
+% \author{Dmitry Protasov}
+% \date{MIPT, 2023}
+
+\title{Automatic Music Transcription}
+\author{
+Дмитрий Протасов\\
+МФТИ\\ 
+\texttt{dmitry.protasov@gmail.com} 
+\AND
+Консультант: Дмитрий Ковалев\\
+\AND
+Эксперт: д.ф.-м.н. Иван Матвеев\\
 }
-\date{}
-
-\renewcommand{\shorttitle}{\textit{arXiv} Template}
-
-%%% Add PDF metadata to help others organize their library
-%%% Once the PDF is generated, you can check the metadata with
-%%% $ pdfinfo template.pdf
-\hypersetup{
-pdftitle={A template for the arxiv style},
-pdfsubject={q-bio.NC, q-bio.QM},
-pdfauthor={David S.~Hippocampus, Elias D.~Striatum},
-pdfkeywords={First keyword, Second keyword, More},
-}
+\date{МФТИ, 2023}
 
 \begin{document}
+
 \maketitle
 
 \begin{abstract}
-	\lipsum[1]
+    Автоматическая транскрипция музыки (AMT) остается важной, но сложной задачей в области поиска музыкальной информации, которую затрудняют ограниченные наборы данных MIDI и низкое качество существующих моделей. Данное исследование направлено на повышение точности транскрипции за счет использования специализированных моделей для извлечения различных музыкальных особенностей, таких как аккордовые прогрессии, тональность, ритм и типы инструментов. Для решения проблемы нехватки наборов MIDI-данных мы предлагаем использовать синтетические данные для пополнения обучающих ресурсов. Этот подход предлагает новый способ потенциального обогащения моделей AMT и развития этой области.
 \end{abstract}
 
 
-\keywords{First keyword \and Second keyword \and More}
 
 \section{Introduction}
-\lipsum[2]
-\lipsum[3]
 
-\section{Headings: first level}
-\label{sec:headings}
+% Automatic Music Transcription (AMT) is a pivotal task in music information retrieval that involves converting audio signals into a symbolic representation. The research in AMT is motivated by its vast array of applications, from aiding musicological analysis to facilitating music education and production. The objective of this research is to refine the transcription process by incorporating key detection and beats per minute (BPM) analysis to improve the accuracy of note identification, particularly focusing on vocal parts prevalent in polyphonic music.
 
-\lipsum[4] See Section \ref{sec:headings}.
+Автоматическая транскрипция музыки (АМТ) - ключевая задача в области извлечения информации из музыки, которая заключается в преобразовании аудиосигналов в символическое представление. Исследования в области АМТ мотивированы широким спектром ее применения - от помощи в музыковедческом анализе до облегчения музыкального образования и производства. Цель этого исследования -- усовершенствование процесса транскрипции путём включения анализа тональности и определения количества ударов в минуту (BPM) для повышения точности идентификации нот%, особенно сосредоточиваясь на вокальных партиях, преобладающих в полифонической музыке.
 
-\subsection{Headings: second level}
-\lipsum[5]
+% AMT is a complex challenge due to the intricate nature of polyphonic audio, where multiple instruments and voices overlap.  MT3 \cite{mt3_2021} introduced a multi-instrument transcription approach using a transformer model, setting a new state-of-the-art benchmark. However, this method relies heavily on large neural networks, which require substantial computational resources. The work of Jointist \cite{jointist} dissects the problem into three sub-tasks: music source separation, instrument recognition, and transcription itself. While this dissection provides a structured approach, the lack of publicly available code limits its reproducibility and further development.
+
+AMT - сложная задача, обусловленная сложной природой полифонического звука, в котором несколько инструментов и голосов накладываются друг на друга.  MT3 (\cite{mt3_2021}) представил подход к транскрипции для множества инструментов с использованием модели трансформера, установив новый эталонный уровень для данной области. Однако этот метод в значительной степени зависит от больших нейронных сетей, требующих существенных вычислительных ресурсов. Работа Jointist (\cite{jointist}) разделяет проблему на три подзадачи: разделение музыкальных источников, распознавание инструментов и саму транскрипцию. Хотя такое разделение предлагает структурированный подход, отсутствие общедоступного кода ограничивает его воспроизводимость и дальнейшее развитие.
+
+
+The novel contribution of basic-pitch (\cite{basic_pitch_2021})
+is the use of Constant-Q Transform (CQT) for monophonic transcription, which aligns more naturally with musical theory compared to mel-spectrograms. However, its limitation to monophonic audio restricts its applicability to more complex compositions. Furthermore, a comprehensive review by (\cite{music_source_separation_2023}) evaluates the current landscape of music source separation, which is a foundational step in AMT.
+
+A recent study by (\cite{synthetic_dataset_2023})
+introduces a synthetic dataset for AMT; however, this approach may lead to impoverished sound representations due to its synthetic nature. In contrast, this research aims to leverage real-world datasets to capture the rich nuances present in actual music recordings.
+
+% To address the deficiencies of current models, this project proposes a hybrid solution that employs discrete AMT elements such as key detection and BPM estimation, hypothesizing that these musical aspects can guide and refine the note transcription process. By concentrating predominantly on vocal parts, the research taps into a universal element present across various genres, thereby ensuring a wide applicability of the findings.
+
+Чтобы устранить недостатки существующих моделей, в данной работе предлагается гибридное решение, использующее дискретные элементы AMT, такие как определение клавиш и оценка BPM, предполагая, что эти музыкальные аспекты могут направлять и уточнять процесс транскрипции нот. %Сосредоточившись преимущественно на вокальных партиях, исследование задействует универсальный элемент, присутствующий в различных жанрах, что обеспечивает широкую применимость полученных результатов.
+
+
+\section{Problem Statement}
+
+% Automatic Music Transcription (AMT) seeks to convert audio signals of music into a symbolic representation, specifically MIDI format, which details the musical notes, their timing, and dynamics. This involves identifying and isolating individual musical notes and instruments from complex audio inputs and accurately transcribing this information into a structured digital format that can be used for various musicological and computational music tasks.
+
+Автоматическая транскрипция музыки (AMT) направлена на преобразование музыкальных аудиосигналов в символическое представление, в частности в формат MIDI, в котором подробно описываются музыкальные ноты, их время и динамика. Это предполагает идентификацию и выделение отдельных музыкальных нот и инструментов из сложного аудиосигнала и точную транскрипцию этой информации в структурированный цифровой формат, который может быть использован для решения различных музыковедческих и вычислительных музыкальных задач.
+
+% Consider an audio signal $A(t)$ representing a musical piece over time $t$. The aim of AMT is to transcribe this audio signal into a sequence of MIDI events that capture the musical content, including note onsets, offsets, and pitches, for each instrument track, while excluding dynamics and percussion for simplicity.
+
+Рассмотрим аудиосигнал \(A(t): [0, T] \rightarrow \mathbb{R}\), где \(T\) – продолжительность сигнала в секундах, представляющий музыкальное произведение по времени \(t\). Здесь \(t\) обозначает дискретное время в рамках частоты дискретизации, обычно равной 22050 Гц, что означает, что каждую секунду записи представляет 22050 сэмплов. Значения сигнала \(A(t)\) могут быть представлены, например, как 16-битные целые числа (int16), охватывая диапазон от -32768 до 32767, где каждое значение соответствует мгновенной амплитуде звукового сигнала в этот момент времени. Цель автоматической музыкальной транскрипции (АМТ) – транскрибировать этот аудиосигнал в последовательность событий MIDI, которые захватывают музыкальное содержание, включая начала нот, окончания и высоты тона для каждого инструментального трека, исключая динамику и ударные для упрощения.
+
+% Let $S = \{(n_i, t_{on_i}, t_{off_i}) | i = 1, \ldots, N\}$ be the target sequence of MIDI events for a given instrument, where $n_i$ represents the MIDI note number, $t_{on_i}$ and $t_{off_i}$ are the onset and offset times of the $i$-th note, and $N$ is the total number of notes.
+
+Пусть $S = \{(n_i, t_{on_i}, t_{off_i}) | i = 1, \ldots, N\}$ будет целевой последовательностью событий MIDI для данного инструмента, где $n_i$ представляет номер MIDI ноты, $t_{on_i}$ и $t_{off_i}$ - время начала и окончания $i$-й ноты, а $N$ -- общее количество нот.
+
+% Our model, $M$, maps the audio signal to a predicted sequence of MIDI events: $M: A(t) \rightarrow S'$. The goal is to find the model parameters that minimize the discrepancy between the predicted sequence $S'$ and the target sequence $S$.
+
+Наша модель, $M$, отображает аудиосигнал в предсказанную последовательность событий MIDI: $M: A(t) \rightarrow S'$. Цель состоит в том, чтобы найти параметры модели, минимизирующие расхождение между предсказанной последовательностью $S'$ и целевой последовательностью $S$.
+
+Given the discrete nature of MIDI events, we employ a cross-entropy loss function for optimization. For each time frame $j$ and each possible note $n$, we define a probability distribution over the possible states (note on, note off) predicted by the model. The cross-entropy loss $L$ for a single note event is then given by:
 \begin{equation}
-	\xi _{ij}(t)=P(x_{t}=i,x_{t+1}=j|y,v,w;\theta)= {\frac {\alpha _{i}(t)a^{w_t}_{ij}\beta _{j}(t+1)b^{v_{t+1}}_{j}(y_{t+1})}{\sum _{i=1}^{N} \sum _{j=1}^{N} \alpha _{i}(t)a^{w_t}_{ij}\beta _{j}(t+1)b^{v_{t+1}}_{j}(y_{t+1})}}
+L = -\sum_{j=1}^{J} \sum_{n=1}^{128} y_{jn} \log(p_{jn}) + (1 - y_{jn}) \log(1 - p_{jn}),
 \end{equation}
+where $J$ is the total number of time frames, $y_{jn}$ is the binary indicator (0 or 1) of the presence of note $n$ in time frame $j$ in the target sequence, and $p_{jn}$ is the predicted probability of note $n$'s presence in time frame $j$.
 
-\subsubsection{Headings: third level}
-\lipsum[6]
+The optimization problem can thus be formulated as:
+\begin{equation}
+\underset{M}{\mathrm{argmin}} \, \sum_{i=1}^{I} L(M(A_i(t)), S_i),
+\end{equation}
+where $I$ is the number of instances (audio tracks) in the dataset.
 
-\paragraph{Paragraph}
-\lipsum[7]
+Для оценки качества транскрибированных музыкальных записей, наряду с минимизацией функции потерь, используется метрика $F_{no}$, которая учитывает точность, полноту и перекрытие временных интервалов нот. Метрика вычисляется на основе сравнения между эталонными (reference) и оценочными (estimated) нотами. Нота считается правильно транскрибированной, если её начало находится в пределах $\pm50$ мс от начала эталонной ноты, высота тона в пределах $\pm50$ центов от соответствующей эталонной ноты, а окончание ноты -- в пределах $20\%$ (по умолчанию) от длительности эталонной ноты вокруг окончания эталонной ноты или в пределах не менее $50$ мс, в зависимости от того, что больше. Если параметр <<offset\_ratio>> установлен в значение <<None>>, окончания нот не учитываются при сравнении.
+
+Пусть $t_{on}^{ref}$ и $t_{on}^{est}$ обозначают времена начала эталонной и оценочной нот соответственно, $f^{ref}$ и $f^{est}$ -- их высоты тонов в центах, а $t_{off}^{ref}$ и $t_{off}^{est}$ -- времена окончания. Тогда условия можно выразить следующим образом:
+
+1. \textbf{Условие начала ноты:}
+\[
+|t_{on}^{est} - t_{on}^{ref}| \leq 50\ \text{мс}
+\]
+
+2. \textbf{Условие высоты тона:}
+\[
+|f^{est} - f^{ref}| \leq 50\ \text{центов}
+\]
+
+3. \textbf{Условие окончания ноты}:
+   Определим длительность эталонной ноты как $d^{ref} = t_{off}^{ref} - t_{on}^{ref}$ и установим порог окончания ноты, $\Delta t_{off}$, как максимум из $20\%$ длительности эталонной ноты и $50$ мс:
+\[
+\Delta t_{off} = \max(0.2 \cdot d^{ref}, 50\ \text{мс})
+\]
+   - Тогда условие для окончания ноты выглядит так: \( |t_{off}^{est} - t_{off}^{ref}|  \leq \Delta t_{off}\)
+
+Если <<offset\_ratio>> установлен в значение  <<None>>, условие окончания ноты игнорируется.
+
+\medskip
+
+Точность ($Precision$), полнота ($Recall$) и $F$-мера ($F_{measure}$) вычисляются следующим образом:
+
+$$ Precision &= \frac{\text{Number of correctly transcribed notes}}{\text{Total number of estimated notes}}, $$
+
+$$Recall &= \frac{\text{Number of correctly transcribed notes}}{\text{Total number of reference notes}},\ $$
+
+$$F_{measure} &= 2 \cdot \frac{Precision \cdot Recall}{Precision + Recall}. $$
+
+Дополнительно вычисляется Средний Коэффициент Перекрытия ($\text{Average\ Overlap\ Ratio}$), который оценивает среднее перекрытие временных интервалов между правильно транскрибированными оценочными и эталонными нотами.
 
 
+\section{Планирование эксперимента}
 
-\section{Examples of citations, figures, tables, references}
-\label{sec:others}
+Для решения недостатков существующих моделей, в данной работате предлагается гибридное решение, которое использует дискретные элементы АМТ, такие как определение тональности (key detection) и оценка количества ударов в минуту (BPM estimation), предполагая, что эти музыкальные аспекты могут направлять и уточнять процесс транскрипции нот. %Сосредоточение преимущественно на вокальных партиях позволяет исследованию касаться универсального элемента, присутствующего в различных жанрах, тем самым обеспечивая широкую применимость результатов.
 
-\subsection{Citations}
-Citations use \verb+natbib+. The documentation may be found at
-\begin{center}
-	\url{http://mirrors.ctan.org/macros/latex/contrib/natbib/natnotes.pdf}
-\end{center}
+Эксперименты были спроектированы для проверки этой гипотезы с использованием набора данных BabySlakh, который является устоявшимся ресурсом в сфере автоматической музыкальной транскрипции. Этот датасет содержит мульти-трековые MIDI-транскрипции, позволяя детально аннотировать взаимодействие между тональностью, ритмом и событиями нот
 
-Here is an example usage of the two main commands (\verb+citet+ and \verb+citep+): Some people thought a thing \citep{kour2014real, hadash2018estimate} but other people thought something else \citep{kour2014fast}. Many people have speculated that if we knew exactly why \citet{kour2014fast} thought this\dots
+В следующих разделах будет подробно изложена методология, включая обзор литературы и детальное изучение передовых техник. Будут очерчены задачи проекта, а также подчеркнута новизна и преимущества предложенного решения по сравнению с современными моделями.
 
-\subsection{Figures}
-\lipsum[10]
-See Figure \ref{fig:fig1}. Here is how you add footnotes. \footnote{Sample of the first footnote.}
-\lipsum[11]
+\subsection{Теоретическое обоснование улучшения с помощью BPM и тональности}
 
-\begin{figure}
-	\centering
-	\includegraphics[width=0.5\textwidth]{../figures/log_reg_cs_exp.eps}
-	\caption{Sample figure caption.}
-	\label{fig:fig1}
-\end{figure}
+Предложенное улучшение базируется на теории музыки, согласно которой знание BPM и тональности композиции позволяет более точно предсказывать начало и окончание нот, а также их принадлежность к музыкальной шкале. Рассмотрим следующие аспекты:
 
-\subsection{Tables}
-See awesome Table~\ref{tab:table}.
+\textbf{Квантизация BPM.} Если известен BPM композиции, можно предположить, что начало и окончание каждой ноты соответствуют целочисленному количеству ударов в рамках музыкального такта. Это позволяет квантизировать временные рамки нот, значительно улучшая точность определения их временных интервалов. Математически это можно выразить как:
+\[
+t_{on}^{quant} = \left\lfloor\frac{t_{on} \cdot \text{BPM}}{60}\right\rceil \cdot \frac{60}{\text{BPM}}, \quad t_{off}^{quant} = \left\lfloor\frac{t_{off} \cdot \text{BPM}}{60}\right\rceil \cdot \frac{60}{\text{BPM}},
+\]
+где $t_{on}^{quant}$ и $t_{off}^{quant}$ -- квантизированные времена начала и окончания ноты, $t_{on}$ и $t_{off}$ -- исходные времена начала и окончания, а $\text{BPM}$ -- темп композиции в ударах в минуту.
 
-The documentation for \verb+booktabs+ (`Publication quality tables in LaTeX') is available from:
-\begin{center}
-	\url{https://www.ctan.org/pkg/booktabs}
-\end{center}
+\textbf{Фильтрация по тональности.} Знание тональности позволяет отфильтровать ноты, которые не соответствуют музыкальной гармонии композиции. Для каждой ноты, обозначаемой как $n$ с высотой звука в формате, например, C4 (где буква обозначает ноту, а число -- октаву), можно определить, соответствует ли она текущей тональности композиции. Если композиция находится в тональности C мажор, ноты, не входящие в шкалу C мажора, могут быть исключены из предсказания. Определим функцию фильтрации $F_{\text{key}}: \mathcal{N} \rightarrow \{0, 1\}$, где $\mathcal{N}$ -- пространство всех возможных нот. Функция возвращает $1$ для нот $n$, принадлежащих заданной тональности, и $0$ --- в противном случае. Математически это можно представить как:
+\[
+F_{\text{key}}(n) = 
+\begin{cases} 
+1 & \text{если } n \in \text{Тональность}, \\
+0 & \text{иначе}.
+\end{cases}
+\]
+
+Этот подход позволяет эффективно сократить количество потенциальных ошибок в транскрипции, исключая ноты, которые маловероятно будут играть в данной тональности, тем самым улучшая общую точность идентификации нот.
+
+Эти методы позволяют существенно повысить точность автоматической музыкальной транскрипции, опираясь на фундаментальные принципы музыкальной теории и структуры.
 
 
-\begin{table}
-	\caption{Sample table title}
-	\centering
-	\begin{tabular}{lll}
-		\toprule
-		\multicolumn{2}{c}{Part}                   \\
-		\cmidrule(r){1-2}
-		Name     & Description     & Size ($\mu$m) \\
-		\midrule
-		Dendrite & Input terminal  & $\sim$100     \\
-		Axon     & Output terminal & $\sim$10      \\
-		Soma     & Cell body       & up to $10^6$  \\
-		\bottomrule
-	\end{tabular}
-	\label{tab:table}
+\section{Эксперимент и результаты}
+
+Целью вычислительного эксперимента является проверка гипотезы о том, что интеграция анализа тональности и квантизации BPM в процесс автоматической музыкальной транскрипции может значительно улучшить точность идентификации нот%, особенно для вокальных партий в полифонической музыке.
+
+\subsection{Постановка и условия эксперимента}
+
+Экспериментальная оценка проводилась на датасете BabySlakh, который представляет собой обширный набор MIDI-транскрипций, сгенерированных из мульти-трековых аудиозаписей. Для оценки эффективности предложенного подхода использовались метрики $F_{no}$ с различными параметрами <<offset>>, чтобы изучить влияние учёта длительности нот на качество транскрипции.
+
+\subsection{Описание алгоритма}
+
+Эксперимент включал в себя сравнение четырёх конфигураций:
+1. Базовая модель AMT без дополнительных уточнений.
+2. Модель AMT с интеграцией маскирования на тональность (key masking).
+3. Модель AMT с квантизацией BPM (bpm quantization).
+4. Модель AMT с одновременным использованием анализа тональности и квантизацией BPM.
+
+\subsection{Результаты}
+
+Для демонстрации результатов использовались следующие метрики: $F_{no}$ без учета <<offset>> и $F_{no}$ с параметром <<offset>>, равным $0.2$.
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|l|c|c|}
+\hline
+Модель & $F_{no}^{offset=0.2}$  & $F_{no}^{offset=None}$  \\ \hline
+Обычная модель & TODO & TODO \\ 
++ Key Masking & TODO & TODO \\ 
++ BPM Quantization & TODO & TODO \\ 
++ Key + BPM & TODO & TODO \\ \hline
+\end{tabular}
+\caption{Сравнение эффективности различных конфигураций модели на датасете BabySlakh}
+\label{table:results}
 \end{table}
 
-\subsection{Lists}
-\begin{itemize}
-	\item Lorem ipsum dolor sit amet
-	\item consectetur adipiscing elit.
-	\item Aliquam dignissim blandit est, in dictum tortor gravida eget. In ac rutrum magna.
-\end{itemize}
+\subsection{Анализ результатов}
 
+TODO
 
-\bibliographystyle{unsrtnat}
-\bibliography{references}
+\bibliographystyle{plainnat}
+\bibliography{Protasov2024}
+
 
 \end{document}
